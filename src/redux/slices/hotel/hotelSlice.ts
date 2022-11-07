@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { faker } from '@faker-js/faker';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { createRandomHotel } from "../../../lib/fakerUtils";
 import { Hotel } from "../../types/types";
 
@@ -11,9 +12,27 @@ const initialState: HotelsState = {
 };
 
 export const hotelSlice = createSlice({
-  name: "user",
+  name: "hotels",
   initialState,
-  reducers: {},
+  reducers: {
+    bookRoom: (state: HotelsState, action: PayloadAction<{
+      hotelId: string,
+      roomId: string,
+      checkIn: string,
+      checkOut: string,
+      userId: string
+    }>) => {
+      const { hotelId, roomId,  } = action.payload;
+      const hotel = state.hotels.findIndex((hotel) => hotel.id === hotelId);
+
+      if (hotel !== -1) {
+        const room = state.hotels[hotel].rooms.findIndex((room) => room.id === roomId);
+        if (room !== -1) {
+          state.hotels[hotel].rooms[room].booking.push({ id: faker.datatype.uuid(),...action.payload});
+        }
+      }
+     }
+  },
 });
 
-export const {} = hotelSlice.actions;
+export const { bookRoom } = hotelSlice.actions;
