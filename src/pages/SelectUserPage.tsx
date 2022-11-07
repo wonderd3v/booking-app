@@ -1,33 +1,22 @@
 import { FC, useMemo, useState } from 'react';
-import { faker } from '@faker-js/faker';
 import Button from '@mui/material/Button';
 import { Select } from '../components/Select';
 import { useAppDispatch } from '../hooks/hooks';
 import { signIn } from '../redux/slices';
-interface User {
-  id: string;
-  name: string;
-  email: string;
-}
-
-export const USERS: User[] = [];
-
-export function createRandomUser(): User {
-  return {
-    id: faker.datatype.uuid(),
-    name: faker.name.fullName(),
-    email: faker.internet.email(),
-  };
-}
-
-Array.from({ length: 3 }).forEach(() => {
-  USERS.push(createRandomUser());
-});
+import { User } from '../redux/types/types';
+import { createRandomUser } from '../lib/fakerUtils';
+import { useNavigate } from 'react-router-dom';
 
 export const SelectUserPage: FC = () => {
+  const USERS: User[] = [];
+
+  Array.from({ length: 3 }).forEach(() => {
+    USERS.push(createRandomUser());
+  });
+
   const dispatch = useAppDispatch();
   const [user, setUser] = useState<User>(USERS[0]);
-
+  const navigate = useNavigate();
   const users = useMemo(() => USERS.map(({ id, name }) => ({ value: id, label: name })), []);
 
   const handleSelectUser = (id: string) => {
@@ -41,6 +30,7 @@ export const SelectUserPage: FC = () => {
 
   const handleSignIn = () => {
     dispatch(signIn(user));
+    navigate('/home');
   };
 
   return (
