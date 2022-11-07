@@ -18,8 +18,8 @@ const initialState: UserState = {
   isSignIn: false,
 };
 
-export const userSlice = createSlice({
-  name: "user",
+export const usersSlice = createSlice({
+  name: "users",
   initialState,
   reducers: {
     signIn: (
@@ -32,4 +32,4 @@ export const userSlice = createSlice({
   },
 });
 
-export const { signIn } = userSlice.actions;
+export const { signIn } = usersSlice.actions;

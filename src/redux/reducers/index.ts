@@ -1,10 +1,12 @@
 
 import { combineReducers } from "@reduxjs/toolkit";
-import { bookingSlice, userSlice } from '../slices';
+import { bookingSlice, hotelSlice, usersSlice } from '../slices';
 
 const rootReducer = combineReducers({
-    user: userSlice.reducer,
-    booking: bookingSlice.reducer,
+    users: usersSlice.reducer,
+    bookings: bookingSlice.reducer,
+    hotels: hotelSlice.reducer
+    
 });
 
 export default rootReducer;

@@ -1,38 +1,18 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useAppSelector } from './hooks/hooks';
-import { HomePage, SelectUserPage } from './pages';
-import { PrivateRoutes, PublicRoutes } from './router';
-
-export const NotFound = () => {
-  return (
-    <div>
-      <h1>NOT FOUND PAGE</h1>
-    </div>
-  );
-};
+import { HomePage, HotelPage } from './pages';
+import { Layout } from './pages/shared/Layout';
+import { NotFound } from './pages/shared/NotFound';
 
 function App() {
-  const { isSignIn } = useAppSelector((state) => state.user);
+  const { isSignIn } = useAppSelector((state) => state.users);
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <PublicRoutes isSignIn={isSignIn}>
-              <SelectUserPage />
-            </PublicRoutes>
-          }
-        />
-        <Route
-          path="home"
-          element={
-            <PrivateRoutes isSignIn={isSignIn}>
-              <HomePage />
-            </PrivateRoutes>
-          }
-        />
+        <Route path="/" element={<Layout />} />
+        <Route path="hotels" element={<HomePage />} />
+        <Route path="hotels/:hotelId" element={<HotelPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
