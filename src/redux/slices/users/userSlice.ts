@@ -1,14 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface UserState {
-  id: string;
-  name: string;
+  profile: {
+    id: string;
+    name: string;
+    email: string;
+  };
   isSignIn: boolean;
 }
 
 const initialState: UserState = {
-  id: "",
-  name: "",
+  profile: {
+    id: "",
+    name: "",
+    email: "",
+  },
   isSignIn: false,
 };
 
@@ -16,7 +22,11 @@ export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    signIn: (state) => {
+    signIn: (
+      state,
+      action: PayloadAction<{ id: string; name: string; email: string }>
+    ) => {
+      state.profile = action.payload;
       state.isSignIn = true;
     },
   },
