@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
 interface UserState {
   profile: {
     id: string;
@@ -33,3 +32,4 @@ export const usersSlice = createSlice({
 });
 
 export const { signIn } = usersSlice.actions;
+

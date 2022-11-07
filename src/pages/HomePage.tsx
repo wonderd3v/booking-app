@@ -26,8 +26,6 @@ export const HomePage: FC = () => {
           }}
         />
       ))}
-
-      <Outlet />
     </div>
   );
 };
