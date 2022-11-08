@@ -6,6 +6,10 @@ import { Route, Routes } from 'react-router-dom';
 
 export const publicRoutes = [
   {
+    path: '/',
+    component: <SelectUserPage />,
+  },
+  {
     path: '*',
     component: <NotFound />,
   },
@@ -16,6 +20,10 @@ export const publicRoutes = [
 ];
 
 export const privateRoutes = [
+  {
+    path: '/',
+    component: <SelectUserPage />,
+  },
   {
     path: '/home',
     component: <HomePage />,
