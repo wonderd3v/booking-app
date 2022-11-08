@@ -1,7 +1,11 @@
+import { Typography } from '@mui/material';
+import { Box } from '@mui/system';
+
 export const NotFound = () => {
   return (
-    <div>
-      <h1>NOT FOUND PAGE</h1>
-    </div>
+    <Box>
+      {' '}
+      <Typography>You got select a user or this is not a configured route</Typography>
+    </Box>
   );
 };

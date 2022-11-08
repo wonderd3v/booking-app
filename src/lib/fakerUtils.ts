@@ -10,7 +10,6 @@ export function createRandomUser(): User {
     email: faker.internet.email(),
   };
 }
-
 export function createRandomHotel(): Hotel[] {
   return data.hotels;
 }
