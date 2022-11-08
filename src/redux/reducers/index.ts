@@ -7,4 +7,5 @@ const rootReducer = combineReducers({
     hotels: hotelSlice.reducer
 });
 
+
 export default rootReducer;

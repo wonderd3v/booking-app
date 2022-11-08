@@ -1,36 +1,42 @@
 export interface User {
-  id: string;
+  id: number;
   name: string;
   email: string;
-}
+ }
 
-export interface Booking {
-  id: string;
-  roomId: string;
-  hotelId: string;
-  userId: string;
-  checkIn?: string;
-  checkOut?: string;
-}
+ export interface Country {
+ }
 
-export interface Country {
-  id: string;
-  name: string;
-}
+ export interface Booking {
+    id: number;
+    roomId: number;
+    hotelId: number;
+    userId: number;
+    checkIn?: string;
+    checkOut?: string;
+  }
+ export interface Room {
+    id: number;
+    hotelId: number;
+    name: string;
+    description: string;
+    price: number;
+    currency: string;
+    image: string;
+    bookings: Booking[];
+ }
 
-export interface Room {
-  id: string;
-  hotelId: string;
-  name: string;
-  booking: Booking[];
-}
+ export interface Hotel {
+    id: number;
+    image: string;
+    alt: string;
+    description: string;
+    country: Country;
+    name: string;
+    rooms: Room[];
+ }
 
-export interface Hotel {
-  id: string;
-  image: string;
-  alt?: string;
-  description: string;
-  countryId: Country;
-  name: string;
-  rooms: Room[];
-}
+ export interface Data {
+    users: User[];
+    hotels: Hotel[];
+ }
