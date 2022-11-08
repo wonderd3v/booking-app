@@ -1,5 +1,6 @@
+import { Box, Grid } from '@mui/material';
 import { FC } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { HotelCard } from '../components/HotelCard';
 import { useAppSelector } from '../hooks/hooks';
 
@@ -8,24 +9,27 @@ export const HomePage: FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div>
-      <h1>Home page</h1>
-
-      {hotels.map((hotel) => (
-        <HotelCard
-          onPress={() => {
-            navigate(`/hotels/${hotel.id}`);
-          }}
-          key={hotel.id}
-          hotel={{
-            id: hotel.id,
-            description: hotel.description,
-            image: hotel.image,
-            title: hotel.name,
-            alt: hotel.alt,
-          }}
-        />
-      ))}
-    </div>
+    <Box sx={{ width: '100%', margin: '4%' }}>
+      <Grid container spacing={4}>
+        {hotels.map((hotel, index) => (
+          <Grid key={index} item xs={3}>
+            <HotelCard
+              onPress={() => {
+                navigate(`/hotels/${hotel.id}`);
+              }}
+              hotel={{
+                id: hotel.id,
+                description: hotel.description,
+                image: hotel.image,
+                name: hotel.name,
+                alt: hotel.alt,
+                country: hotel.country,
+                rooms: hotel.rooms,
+              }}
+            />
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
 };

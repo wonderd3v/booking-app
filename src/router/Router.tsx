@@ -21,7 +21,7 @@ export const privateRoutes = [
     component: <HomePage />,
   },
   {
-    path: '/hotel/:hotelId',
+    path: '/hotels/:hotelId',
     component: <HotelPage />,
   },
   {
